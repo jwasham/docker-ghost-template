@@ -1,0 +1,19 @@
+#ghost:
+#  expose:
+#    - "2368"
+#  image: ghost
+
+#frontdoor:
+#  #image: nginx
+#  build: ./nginx
+#  ports:
+#    - "80:80"
+#    - "443:443"
+#  links:
+#    - ghost
+#
+
+blog:
+  ports:
+    - "2368:2368"
+  image: ghost
