@@ -1,4 +1,4 @@
-frontdoor:
+frontdoor-nginx:
   build: ./nginx
   ports:
     - 80:80
@@ -9,7 +9,7 @@ frontdoor:
 
 ghost:
   ports:
-    - "2368:2368"
+    - 2368:2368
   image: ghost
   restart: always
 
