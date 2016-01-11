@@ -1,14 +1,43 @@
 frontdoor-nginx:
   build: ./nginx
   ports:
-    - 80:80
-    - 443:443
+    - "80:80"
+    - "443:443"
   links:
     - ghost
   restart: always
 
 ghost:
-  ports:
-    - 2368:2368
-  image: ghost
+  volumes:
+    - ./ghost/content:/var/lib/ghost
+  build: ./ghost
+  expose:
+    - "2368" # makes it reachable by linked services but unreachable from host for security
+  environment: # this section can be commented to start in dev mode by default
+    - NODE_ENV=production
+    - "WEB_DOMAIN=super-blog.com"
+    - DB_DATABASE=THE_DB_NAME
+    - DB_USER=THE_DB_USER
+    - "DB_PASSWORD=THE_DB_PASSWORD"
+    - "EMAIL_SERVICE=Mailgun" # SMTP service
+    - "EMAIL_USER=THE_MAILGUN_POSTMASTER_EMAIL_ADDRESS" # provided by the mail service provider for sending via SMTP
+    - "EMAIL_PASSWORD=THE_MAILGUN_PASSWORD"
+    - "S3_ACCESS_KEY_ID=THE_S3_USER_ACCESS_KEY"
+    - "S3_ACCESS_SECRET_KEY=THE_S3_ACCESS_SECRET_KEY"
+    - "S3_BUCKET_NAME=THE_S3_BUCKET_NAME"
+    - "S3_BUCKET_REGION=THE_REGION"
+    - "S3_ASSET_HOST_URL=THE_CLOUDFRONT_HTTPS_DOMAIN_WITH_SLASH"
+  restart: always
+  links:
+    - mysql
+
+mysql:
+  image: mysql:5.7.10
+  expose:
+    - "3306"
+  environment:
+    - "MYSQL_ROOT_PASSWORD=THE_ROOT_DB_PASSWORD" # beware of special characters in password that can be interpreted by shell
+    - MYSQL_DATABASE=THE_DB_NAME
+    - MYSQL_USER=THE_DB_USER
+    - "MYSQL_PASSWORD=THE_DB_PASSWORD"
   restart: always
