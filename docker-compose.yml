@@ -31,14 +31,6 @@ ghost:
   links:
     - mysql
 
-# MySQL can take a while to run its initial setup.
-# This keeps Ghost from trying to connect until it's ready.
-mysql-wait:
-  image: aanand/wait
-  links:
-    - ghost
-    - mysql
-
 mysql:
   image: mysql:5.7.10
   expose:

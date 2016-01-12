@@ -42,6 +42,8 @@ Once the directories have been created, you are free to commit the files to vers
 
 ## Todo List:
 
+- fix timing issues: 
+    - MySQL port 3306 is available before it's ready to receive requests.
 - add S3 support
 - add data volume for MySQL
 - add NGINX SSL termination
