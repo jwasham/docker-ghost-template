@@ -1,4 +1,4 @@
-frontdoor-nginx:
+nginx:
   build: ./nginx
   ports:
     - "80:80"
@@ -29,6 +29,14 @@ ghost:
     - "S3_ASSET_HOST_URL=THE_CLOUDFRONT_HTTPS_DOMAIN_WITH_SLASH"
   restart: always
   links:
+    - mysql
+
+# MySQL can take a while to run its initial setup.
+# This keeps Ghost from trying to connect until it's ready.
+mysql-wait:
+  image: aanand/wait
+  links:
+    - ghost
     - mysql
 
 mysql:

@@ -1,3 +1,3 @@
 .idea
 docker-ghost-template.iml
-ghost/copy/temp.yml
+ghost/copy/temp*.yml
