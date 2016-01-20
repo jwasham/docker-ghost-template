@@ -42,8 +42,9 @@ Once the directories have been created, you are free to commit the files to vers
 
 ## Todo List:
 
-- fix timing issues: 
+- fix issues: 
     - MySQL port 3306 is available before it's ready to receive requests.
+    - issues with getting S3 support working. It's not being recognized by Ghost.
 - add S3 support - https://www.npmjs.com/package/ghost-s3-file-store
 - add data volume for MySQL
 - add NGINX SSL termination
