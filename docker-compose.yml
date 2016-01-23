@@ -1,4 +1,5 @@
 nginx:
+  container_name: nginx_proxy
   build: ./nginx
   ports:
     - "80:80"
@@ -8,8 +9,10 @@ nginx:
   restart: always
 
 ghost:
+  container_name: ghost_blog
   volumes:
-    - ./ghost/content:/var/lib/ghost
+      - ./ghost/content:/var/lib/ghost
+      - ./ghost/config.js:/var/lib/ghost/config.js
   build: ./ghost
   expose:
     - "2368" # makes it reachable by linked services but unreachable from host for security
@@ -32,11 +35,13 @@ ghost:
     - mysql
 
 mysql:
+  container_name: blog_data
   image: mysql:5.7.10
   expose:
     - "3306"
   environment:
-    - "MYSQL_ROOT_PASSWORD=THE_ROOT_DB_PASSWORD" # beware of special characters in password that can be interpreted by shell
+    # beware of special characters in password that can be interpreted by shell
+    - "MYSQL_ROOT_PASSWORD=THE_ROOT_DB_PASSWORD"
     - MYSQL_DATABASE=THE_DB_NAME
     - MYSQL_USER=THE_DB_USER
     - "MYSQL_PASSWORD=THE_DB_PASSWORD"

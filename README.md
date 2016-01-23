@@ -20,16 +20,18 @@ Docker composition of Ghost blog with Node, NGINX proxy, database, etc.
 
 ## Ghost Content Directory
 
-The directory ghost/content will be populated with 4 additional directories the first time you start the container.
+The directory ghost/content will be populated with 5 directories and a file the first time you start the container.
 
 Ghost will create these directories:
 
 - apps - for future use when ghost supports apps
-- data - sqlite db
-- images - for uploaded images
-- themes
+- data - would normally hold a SQLite db, but won't for us since we're using MySQL
+- images - for uploaded images, but will stay empty since we'll use S3 for storage
+- storage - created in our Docker for S3 image support
+- themes - You can add more themes here. Default is Casper theme.
+- index.js - It's a symlink. Don't edit it or remove it.
 
-Once the directories have been created, you are free to commit the files to version control in your clone.
+Once the directories have been created, you are free to commit the files to version control in your clone. Yes, there will be Node.js artifacts (due to S3 storage package), but it's a tradeoff.
 
 ## How to back up your database
 
@@ -42,11 +44,6 @@ Once the directories have been created, you are free to commit the files to vers
 
 ## Todo List:
 
-- fix issues: 
-    - MySQL port 3306 is available before it's ready to receive requests.
-    - issues with getting S3 support working. It's not being recognized by Ghost.
-- add S3 support - https://www.npmjs.com/package/ghost-s3-file-store
-- add data volume for MySQL
 - add NGINX SSL termination
 
 ## The Stack
@@ -61,5 +58,5 @@ Once the directories have been created, you are free to commit the files to vers
 
 ## Security
 
-- Only NGINX's ports are exposed at host level.
+- Only NGINX's ports (80, 443) are exposed at host level.
 - Other ports are available only from inside host and linked containers.
