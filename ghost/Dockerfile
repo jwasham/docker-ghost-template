@@ -12,7 +12,7 @@ COPY ./copy/index.js $GHOST_STORAGE_S3
 
 ## override ghost entrypoint so we can add a wait for the database to initialize
 
-COPY entrypoint.sh /entrypoint.sh
+COPY ./copy/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 

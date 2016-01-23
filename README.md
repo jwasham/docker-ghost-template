@@ -31,8 +31,6 @@ Ghost will create these directories:
 - themes - You can add more themes here. Default is Casper theme.
 - index.js - It's a symlink. Don't edit it or remove it.
 
-Once the directories have been created, you are free to commit the files to version control in your clone. Yes, there will be Node.js artifacts (due to S3 storage package), but it's a tradeoff.
-
 ## How to back up your database
 
 0. Run "docker-compose ps" to get a list of running containers.
