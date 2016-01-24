@@ -1,3 +1,4 @@
-.idea
-docker-ghost-template.iml
+*.iml
 ghost/copy/temp*.yml
+nginx/copy/temp-*
+nginx/volumes/ssl/temp-*

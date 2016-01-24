@@ -1,6 +1,8 @@
 nginx:
   container_name: nginx_proxy
   build: ./nginx
+  volumes:
+    - ./nginx/volumes/ssl:/etc/nginx/ssl
   ports:
     - "80:80"
     - "443:443"
@@ -11,14 +13,14 @@ nginx:
 ghost:
   container_name: ghost_blog
   volumes:
-      - ./ghost/content:/var/lib/ghost
-      - ./ghost/config.js:/var/lib/ghost/config.js
+    - ./ghost/volumes/content:/var/lib/ghost
+    - ./ghost/volumes/config.js:/var/lib/ghost/config.js
   build: ./ghost
   expose:
     - "2368" # makes it reachable by linked services but unreachable from host for security
   environment: # this section can be commented to start in dev mode by default
     - NODE_ENV=production
-    - "WEB_DOMAIN=super-blog.com"
+    - "WEB_DOMAIN=blog.example.com"
     - DB_DATABASE=THE_DB_NAME
     - DB_USER=THE_DB_USER
     - "DB_PASSWORD=THE_DB_PASSWORD"
