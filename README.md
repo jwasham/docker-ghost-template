@@ -68,3 +68,7 @@ Ghost will create these directories:
 The default theme is Casper.  I have a minor fork of this theme here: https://github.com/jwasham/casper-startup-next-door
 
 It includes Disqus support, so all you have to do is change the identifiers to your blog's Disqus ID and domain and you're good to go.
+
+If you place this in your content/themes folder on the host machine and restart the containers. the new theme will show up in Ghost admin in the themes dropdown. 
+
+The theme is be added on the host (outside your container) because the locally mounted volume will show up in your container when it runs.
