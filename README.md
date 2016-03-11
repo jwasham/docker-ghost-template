@@ -62,3 +62,9 @@ Ghost will create these directories:
 
 - Only NGINX's ports (80, 443) are exposed at host level.
 - Other ports are available only from inside host and linked containers.
+
+## Theme
+
+The default theme is Casper.  I have a minor fork of this theme here: https://github.com/jwasham/casper-startup-next-door
+
+It includes Disqus support, so all you have to do is change the identifiers to your blog's Disqus ID and domain and you're good to go.
