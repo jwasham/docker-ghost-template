@@ -1,6 +1,13 @@
 # docker-ghost-template
 Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, database, etc.
 
+## To-Do
+
+I'll be making these changes soon:
+
+- Updating memory limit for MySQL
+- Updating README for more successful first-time runs
+
 ## How to Use It
 
 0. Clone project to your server's filesystem.
