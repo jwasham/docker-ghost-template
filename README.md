@@ -1,11 +1,10 @@
 # docker-ghost-template
 Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, database, etc.
 
-## To-Do
+## Software Used
 
-I'll be making these changes soon:
-
-- Add theme advice
+**Docker** version 1.10.3
+**docker-compose** version 1.6.2
 
 ## Before you start
 
@@ -23,7 +22,7 @@ I'll be making these changes soon:
 0. Set the blog domain in nginx/copy/default.conf (must match the common name in your SSL certificate)
 0. Run from within your Linux environment or Docker Toolbox environment: 
     0. docker-compose build
-    0. docker-compose up -d
+    0. docker-compose up -d  (you can remove the -d if you want to see logs, then Ctrl+C to stop all containers)
 0. If using Docker Toolbox, look up the host IP address with: docker-machine ip default
 0. On Linux, you'll just use "localhost" or "127.0.0.1".
 0. Switch your domain's DNS to point to the address. Go to the domain in our browser and you'll see your new blog.
@@ -53,6 +52,30 @@ Ghost will create these directories:
 0. Use the internal IP address and database user and password to connect to database once SSH tunnel is established to host.
 0. You'll have access to the data so you can view data and run backups.
 
+## Theme
+
+The default theme is Casper.  I have a minor fork of this theme here: https://github.com/jwasham/casper-startup-next-door
+
+It includes Disqus support, so all you have to do is change the identifiers to your blog's Disqus ID and domain and you're good to go. See the README in that repo.
+
+### To install another theme
+
+Stop docker-compose with:
+
+docker-compose stop
+
+Copy the new theme to docker-ghost-template/ghost/volumes/content/themes/
+so that your theme folder sits next to the casper folder in the themes directory
+
+Now run:
+docker-compose up -d
+
+Log in to the Ghost admin, go to Settings > General, and at the bottom is the Theme dropdown. Select your theme and click Save.
+
+### How does that work?
+
+The ghost/volumes/content directory (on docker host machine) gets mounted inside your ghost container at /var/lib/ghost when the container runs. See the docker-compose.yml to see where this volume mount is happening.
+
 ## The Stack
 
 - Node.js
@@ -74,12 +97,3 @@ Ghost will create these directories:
 - Only NGINX's ports (80, 443) are exposed at host level.
 - Other ports are available only from inside host and linked containers.
 
-## Theme
-
-The default theme is Casper.  I have a minor fork of this theme here: https://github.com/jwasham/casper-startup-next-door
-
-It includes Disqus support, so all you have to do is change the identifiers to your blog's Disqus ID and domain and you're good to go. See the README in that repo.
-
-If you place this in your content/themes folder on the host machine and restart the containers, the new theme will show up in Ghost admin in the themes dropdown. 
-
-The theme is be added on the host (outside your container) because the locally mounted volume will show up in your container when it runs.
