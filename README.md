@@ -5,8 +5,12 @@ Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, da
 
 I'll be making these changes soon:
 
-- Updating memory limit for MySQL
-- Updating README for more successful first-time runs
+- Add theme advice
+
+## Before you start
+
+0. Have your server's SSL certificate and key handy.
+0. Be ready to point your domain to the new location (or put an entry in your hosts file for your domain)
 
 ## How to Use It
 
@@ -22,9 +26,9 @@ I'll be making these changes soon:
     0. docker-compose up -d
 0. If using Docker Toolbox, look up the host IP address with: docker-machine ip default
 0. On Linux, you'll just use "localhost" or "127.0.0.1".
-0. Put that IP address in your browser and you'll see your new blog.
-0. Go to http://THAT-IP-ADDRESS/admin to set up your blog.
-0. Once you've made your admin account using that wizard, go back to: http://THAT-IP-ADDRESS/admin
+0. Switch your domain's DNS to point to the address. Go to the domain in our browser and you'll see your new blog.
+0. Go to https://YOUR_DOMAIN/admin to set up your blog.
+0. Once you've made your admin account using that wizard, go back to: https://YOUR_DOMAIN/admin
 0. Log in and enjoy.
 
 ## Ghost Content Directory
