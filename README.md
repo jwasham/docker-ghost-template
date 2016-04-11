@@ -4,6 +4,7 @@ Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, da
 ## Software Used
 
 **Docker** version 1.10.3
+
 **docker-compose** version 1.6.2
 
 ## Before you start
