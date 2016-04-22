@@ -39,7 +39,6 @@ ghost:
 mysql:
   container_name: blog_data
   image: mysql:5.7.10
-  mem_limit: 384m
   expose:
     - "3306"
   environment:

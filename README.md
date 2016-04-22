@@ -98,3 +98,11 @@ The ghost/volumes/content directory (on docker host machine) gets mounted inside
 - Only NGINX's ports (80, 443) are exposed at host level.
 - Other ports are available only from inside host and linked containers.
 
+## MySQL memory
+
+I'm running this on an EC2 t2.micro at 1GB RAM. I tried to limit MySQL's memory limit because it was taking up, what in my opinion, was too much.
+
+Adding this to the mysql: block in docker-compose.yml will limit memory:
+> mem_limit: 384m
+
+I tried 256 and 384. Both caused issues with MySQL. Instead of continuing to experiment, or trying to tune MySQL in a container (no thanks), I just removed the limit.
