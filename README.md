@@ -7,19 +7,25 @@ Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, da
 
 **docker-compose** version 1.6.2
 
-## Before you start
+## What You'll Need
 
-0. Have your server's SSL certificate and key handy.
-0. Be ready to point your domain to the new location (or put an entry in your hosts file for your domain)
-0. Have an account with an email sending service (SMTP service) (Mailgun, Sendgrid, etc.). I'm using Mailgun, which is free for low volume.
+- A server somewhere, like Amazon EC2 or Google Compute Cloud
+- A domain name.
+- An SSL certificate and key for your domain.
+- Access to your domain's DNS.
+- An account with an email sending service (SMTP service) (Mailgun, Sendgrid, etc.). I'm using Mailgun, which is free for low volume.
+- An Amazon S3 bucket.
+- An Amazon CloudFront distribution set up to serve your S3 bucket.
 
 ## How to Use It
 
 0. Clone project to your server's filesystem.
 0. Edit environment settings in docker-compose.yml
     - blog domain
-    - database settings
+    - database settings - in 2 places - under ghost, and under mysql.
     - mail server settings
+    - S3 bucket and S3 info
+    - CloudFront domain
 0. Add your SSL certificate and key to nginx/volumes/ssl/ (there are placeholders there)
 0. Set the blog domain in nginx/copy/default.conf (must match the common name in your SSL certificate)
 0. Run from within your Linux environment or Docker Toolbox environment: 
