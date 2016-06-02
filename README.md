@@ -11,6 +11,7 @@ Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, da
 
 0. Have your server's SSL certificate and key handy.
 0. Be ready to point your domain to the new location (or put an entry in your hosts file for your domain)
+0. Have an account with an email sending service (SMTP service) (Mailgun, Sendgrid, etc.). I'm using Mailgun, which is free for low volume.
 
 ## How to Use It
 

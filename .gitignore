@@ -1,4 +1,5 @@
 *.iml
-ghost/copy/temp*.yml
+ghost/copy/temp.yml
+ghost/copy/temp-var.yml
 nginx/copy/temp-*
 nginx/volumes/ssl/temp-*
