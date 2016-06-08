@@ -27,7 +27,7 @@ Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, da
     - S3 bucket and S3 info
     - CloudFront domain
 0. Add your SSL certificate and key to nginx/volumes/ssl/ (there are placeholders there)
-0. Set the blog domain in nginx/copy/default.conf (must match the common name in your SSL certificate)
+0. Set the blog domain (server_name) in nginx/copy/default.conf (must match the common name in your SSL certificate)
 0. Run from within your Linux environment or Docker Toolbox environment: 
     0. docker-compose build
     0. docker-compose up -d  (you can remove the -d if you want to see logs, then Ctrl+C to stop all containers)
