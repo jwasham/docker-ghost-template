@@ -6,7 +6,8 @@ if [[ "$*" == npm*start* ]]; then
 
     if [ ! -d "$GHOST_CONTENT/themes" ]; then
         # give database a few seconds to initiate before we attempt to connect the first time
-        sleep 10
+        echo "----------> Sleeping to give database time to initialize..."
+        sleep 30
     fi
 
 	for dir in "$GHOST_SOURCE/content"/*/; do
