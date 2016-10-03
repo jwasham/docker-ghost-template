@@ -96,9 +96,9 @@ The ghost/volumes/content directory (on docker host machine) gets mounted inside
 
 ## Inherited Image Versions
 
-- Ghost: 0.7.5
-- NGINX: 1.9.9
-- MySQL: 5.7.10
+- Ghost: 0.11.1
+- NGINX: 1.10
+- MySQL: 5.7.15
 
 ## Security
 
