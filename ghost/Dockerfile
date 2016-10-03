@@ -1,4 +1,4 @@
-FROM ghost:0.11.1
+FROM ghost:0.11.0
 
 ## setup support for s3 storage
 
