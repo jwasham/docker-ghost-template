@@ -36,10 +36,9 @@ config = {
                 }
             }
         },
-
         storage: {
-            active: 'ghost-storage-adapter-s3',
-            'ghost-storage-adapter-s3': {
+            active: 'ghost-s3',
+            'ghost-s3': {
                 accessKeyId:     process.env.S3_ACCESS_KEY_ID,
                 secretAccessKey: process.env.S3_ACCESS_SECRET_KEY,
                 bucket:          process.env.S3_BUCKET_NAME,
@@ -47,7 +46,6 @@ config = {
                 assetHost:       process.env.S3_ASSET_HOST_URL
             }
         },
-
         // this line was added because using NODE_ENV=production caused permission errors
         paths: {
             contentPath: path.join(process.env.GHOST_CONTENT, '/')

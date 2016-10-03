@@ -1,2 +1,2 @@
 'use strict';
-module.exports = require('ghost-storage-adapter-s3');
+module.exports = require('ghost-s3-service');

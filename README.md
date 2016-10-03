@@ -7,6 +7,22 @@ Docker composition of Ghost blog with Node, NGINX proxy with SSL termination, da
 
 **docker-compose** version 1.6.2
 
+## The Stack
+
+- Node.js
+    - Ghost blog software
+    - Added Node module for supporting uploads to S3 so images are not saved to filesystem: https://www.npmjs.com/package/ghost-s3-service
+- NGINX
+    - proxying port 80 calls to the Node web server on port 2368
+- MySQL database
+    - using UTFMB4 encoding (MySQL's UTF8 implementation was limited. UTFMB4 includes Emoji)
+
+## Inherited Image Versions
+
+- Ghost: 0.11.0
+- NGINX: 1.10
+- MySQL: 5.7.15
+
 ## What You'll Need
 
 - A server somewhere, like Amazon EC2 or Google Compute Cloud
@@ -84,26 +100,23 @@ Log in to the Ghost admin, go to Settings > General, and at the bottom is the Th
 
 The ghost/volumes/content directory (on docker host machine) gets mounted inside your ghost container at /var/lib/ghost when the container runs. See the docker-compose.yml to see where this volume mount is happening.
 
-## The Stack
-
-- Node.js
-    - Ghost blog software
-    - Added Node module for supporting uploads to S3 so images are not saved to filesystem.
-- NGINX
-    - proxying port 80 calls to the Node web server on port 2368
-- MySQL database
-    - using UTFMB4 encoding (MySQL's UTF8 implementation was limited. UTFMB4 includes Emoji)
-
-## Inherited Image Versions
-
-- Ghost: 0.11.0
-- NGINX: 1.10
-- MySQL: 5.7.15
-
 ## Security
 
 - Only NGINX's ports (80, 443) are exposed at host level.
 - Other ports are available only from inside host and linked containers.
+
+## To Upgrade from an Earlier Ghost version
+
+Docker containers are meant to be disposable, so you'll need to export your Ghost data first.
+
+0. Export your data: https://help.ghost.org/hc/en-us/articles/224112927-Import-Export-Data
+0. Set up a new server with the repo.
+0. Set it up as directed.
+0. Create your admin account via the web-based wizard.
+0. Delete the starter post.
+0. Go to Labs and import your data.
+
+That's it!
 
 ## MySQL memory
 
