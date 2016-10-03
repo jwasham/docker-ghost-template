@@ -2,7 +2,7 @@ FROM ghost:0.11.0
 
 ## setup support for s3 storage
 
-ENV GHOST_STORAGE_S3 $GHOST_SOURCE/content/storage/s3
+ENV GHOST_STORAGE_S3 $GHOST_SOURCE/content/storage/ghost-storage-adapter-s3
 
 RUN mkdir -p $GHOST_STORAGE_S3 \
     && cd $GHOST_STORAGE_S3 \
